@@ -59,7 +59,7 @@
 
         <ul class="toolbar">
             <li>
-                <a href="/user/userDispatch">
+                <a href="/role/roleDispatch">
                     <span>
                         <img src="/images/t01.png"/>
                     </span>添加
@@ -83,10 +83,8 @@
         <tr>
             <th><input name="" type="checkbox" value="" checked="checked"/></th>
             <th>编号<i class="sort"><img src="/images/px.gif" /></i></th>
-            <th>账号</th>
-            <th>姓名</th>
-            <th>邮箱</th>
-            <th>电话</th>
+            <th>角色名称</th>
+            <th>描述</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -94,12 +92,11 @@
         <c:forEach var="user" items="${list}">
         <tr>
             <td><input name="" type="checkbox" value="" /></td>
-            <td>${user.userId}</td>
-            <td>${user.userName}</td>
-            <td>${user.realName}</td>
-            <td>${user.email}</td>
-            <td>${user.phone}</td>
-            <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+            <td>${user.roleId}</td>
+            <td>${user.roleName}</td>
+            <td>${user.roleDesc}</td>
+            <td><a href="/role/roleDispatch?id=${user.roleId}" class="tablelink">更新</a>
+                <a href="javascript:void(0)" onclick="deleteRole(${user.roleId})" class="tablelink"> 删除</a></td>
         </tr>
         </c:forEach>
 
@@ -118,7 +115,7 @@
             <li class="paginItem"><a href="javascript:;">10</a></li>
             <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
         </ul>
-    </div>
+    </div>v
 
     <div class="tip">
         <div class="tiptop"><span>提示信息</span><a></a></div>
@@ -140,6 +137,11 @@
 
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
+    function deleteRole(id){
+        if (window.confirm("是否删除该记录呢？")){
+            window.location.href="/role/deleteById?id="+id;
+        }
+    }
 </script>
 
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>

@@ -1,5 +1,6 @@
 package com.zzc.service;
 
+import com.bobo.dto.UserDTO;
 import com.zzc.pojo.User;
 
 import java.util.List;
@@ -38,4 +39,6 @@ public interface IUserService {
      * @return
      */
     Integer deleteUser(Integer id) throws Exception;
+
+    Integer saveOrUpdate(UserDTO dto) throws Exception;
 }
