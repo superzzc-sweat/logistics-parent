@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -48,4 +49,16 @@ public class UserController {
         Integer count = service.saveOrUpdate(dto);
         return "redirect:/user/query";
     }
+
+    @RequestMapping("/checkUserName")
+    @ResponseBody
+    public String checkUserName(User user) throws Exception{
+        List<User> list = service.query(user);
+        if(list == null || list.size() ==0){
+            // 表示根据提交的账号查询不到数据，说明 账号不存在
+            return "1";
+        }
+        return "0";
+    }
+
 }

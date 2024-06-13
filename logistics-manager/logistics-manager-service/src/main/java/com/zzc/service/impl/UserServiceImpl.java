@@ -30,6 +30,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<User> query(User user) throws Exception {
         UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        if (user != null) {
+            if(user.getUserName()!=null && !"".equals(user.getUserName()) ){
+                criteria.andUserNameEqualTo(user.getUserName());
+            }
+        }
         return mapper.selectByExample(example);
     }
 
